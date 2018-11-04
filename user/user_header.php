@@ -153,65 +153,7 @@
                                     <li class="flag1"></li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
-                                            <li>
-                                                <!-- Single icon -->
-                                                <a href="#">
-                                                    <div class="single-flag">
-                                                        <div class="msg_meta">
-                                                            <span></span>
-                                                            <img src="assets/img/message-img1.png" alt="">
-                                                        </div>
-                                                        <div class="header-right-icon-text cta2">
-                                                            <p>Rasel ahmed <span>Jan ,01 ,2018</span></p>
-                                                            <span>Thank you for your appericiate...</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!--  End Single icon -->
-                                            <li>
-                                                <!-- Single icon -->
-                                                <a href="#">
-                                                    <div class="single-flag">
-                                                        <div class="msg_meta">
-                                                            <span></span>
-                                                            <img src="assets/img/message-img2.png" alt="">
-                                                        </div>
-                                                        <div class="header-right-icon-text cta2">
-                                                            <p>Tamanna <span>Jan ,15 ,2018</span></p>
-                                                            <span>Hello, I'm a beginner designer.</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!--  End Single icon -->
-                                            <li>
-                                                <!-- Single icon -->
-                                                <a href="#">
-                                                    <div class="single-flag">
-                                                        <div class="msg_meta">
-                                                            <span></span>
-                                                            <img src="assets/img/message-img3.png" alt="">
-                                                        </div>
-                                                        <div class="header-right-icon-text cta2">
-                                                            <p>Shahin ahmed <span>Feb ,01 ,2018</span></p>
-                                                            <span>Hi! Thanks for liking my work.</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!--  End Single icon -->
-                                            <li>
-                                                <!-- Single icon -->
-                                                <a href="#">
-                                                    <div class="single-flag cta">
-                                                        <p>See all Notafaction</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <!--  End Single icon -->
-                                        </ul>
+                                       
                                     </li>
                                 </ul>
                             </li>
@@ -220,7 +162,7 @@
                         
                         <?php
                         
-                        session_start();
+                      //  session_start();
                         
                         include("db.php");
                         ?>
@@ -230,29 +172,23 @@
                         
                         <ul class="nav d-inl-bl">
                             
-                            <?php if (isset($_SESSION['usr_id'])) { ?>
-				<li><b><p style="color:white;">Signed in as <?php echo $_SESSION['usr_name']; ?></p></b></li>
-			
-                        <li><a href="logout.php">Log Out</a></li>
-				<?php } else { ?>
-				<li><a href="choose_login.php">Login</a></li>
-				
-				<?php } ?>
-                            <!-- Messages: style can be found in dropdown.less--
+                          
+                            <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown header-left-flag cta3">
                                 <a href="#" data-toggle="dropdown">
                                     <img src="assets/img/user-img.png" alt="">
-                                    <span class="user-id"><?php //echo $_SESSION['usr_name']; ?></span>
+ <?php if (isset($_SESSION['usr_id'])) { ?>
+                                    <span class="user-id"><?php echo $_SESSION['usr_name']; ?></span>
                                     <span class="arrow-down"></span>
                                 </a>
                                 <ul class="dropdown-menu cta4 animated flipInX">
                                     <li class="flag1"></li>
                                     <li>
-                                        <!-- inner menu: contains the actual data --
+                                        <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                            
                                             <li>
-                                                <!-- Single icon --
+                                                <!-- Single icon -->
                                                 <a href="#">
                                                     <div class="single-flag">
                                                         <span class="user-hv cta1" style="background: url(assets/img/user.png);"></span>
@@ -263,6 +199,31 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <!-- Single icon -->
+                                                <a href="#">
+                                                    <div class="single-flag">
+                                                        <span class="user-hv cta1" style="background: url(assets/img/user.png);"></span>
+                                                        <div class="header-right-icon-text">
+                                                            <a href="../logout.php"><p>Logout</p></a>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!--<li>
+                                                <!-- Single icon --
+                                                <a href="#">
+                                                    <div class="single-flag">
+                                                        <span class="user-hv cta1" style="background: url(assets/img/user.png);"></span>
+                                                        <div class="header-right-icon-text">
+                                                            <a href="update.php"><p>Setting</p></a>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>-->
+                                            <li><?php } else { ?>
+				
+				
+				<?php } ?>
                                                 <!-- Single icon --
                                                 <a href="#">
                                                     <div class="single-flag">

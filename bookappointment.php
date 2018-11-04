@@ -138,7 +138,7 @@ include("check.php");
                         
                         $dname = $_SESSION['dname'];
                         
-                        $user_id = $_POST["u_id"];
+                        $user_id = $_SESSION['usr_id'];;
 
                         
 

@@ -23,14 +23,14 @@
                     </a>
                 </li>
                 <li class="active-cta">
-                    <a href="user_index.php">
+                    <a href="showpath.php">
                     <span class="dnl-link-icon"></span>
                     <img src="assets/svg/nav-icon1.svg" alt="">
                     <span class="dnl-link-text">Pathology</span>
                     </a>
                 </li>
                 <li class="active-cta">
-                    <a href="user_index.php">
+                    <a href="showproduct.php">
                     <span class="dnl-link-icon"></span>
                     <img src="assets/svg/nav-icon1.svg" alt="">
                     <span class="dnl-link-text">Equipments</span>

@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +13,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FAVICON -->
-    <link rel="icon" href="assets/img/favicon.png">
+    <link rel="icon" href="assets/img/logo.png">
     <!--   Title Page -->
-    <title>Table</title>
+    <title>Helpmedr||Show Doctors</title>
     <!-- bootstrap.min.css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- animate.css -->
@@ -26,6 +32,11 @@
     <link href="assets/css/responsive.css" rel="stylesheet">
     <!-- theme-color.css -->
     <link href="assets/css/theme-color.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -73,6 +84,16 @@
     <!--  Nav menu area start -->
     <?php include("sidebar.php"); ?>
     <!-- /.dash-navbar-left -->
+     <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
     <!--  panel area start -->
     <div class="form-validation mar_lft_282 all-bg">
         <div class="container-fluid">
@@ -83,7 +104,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="home_table_title">
-                                <h3>Your Doctors</h3>
+                                <h3>Your Doctor's History</h3>
                                 <div class="forms-select-page">
                                     <!--<span class="show_1">Show</span>
                                     <input type="number" value="10" min="0" max="100" />
@@ -92,74 +113,103 @@
                                     <span id="dec-button2" class="spinner-button"><i class="zmdi zmdi-caret-down"></i></span>-->
                                     <span class="table-search-right">
                                         <span>search</span>
-                                        <input type="search">
+                                        <input type="search" id="myInput">
+                                         <div id="result"></div>
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 table_basic1">
-                            <table class="responsive-table-input-matrix">
+                        <div class="col-lg-12 col-sm-12 table_basic1">
+                            
+                            
+                            <table class="responsive-table-input-matrix" id="myTable" >
                                 <thead>
                                     <tr>
                                         <th>ID <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
-                                        <th>NAME <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
-                                        <th>SALARY <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
-                                        <th>COUNTRY <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
-                                        <th>CITY <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Doctor Id <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>User ID <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Doctor Name<i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Patient Name <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Patient Email <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Patient Mobile <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Patient DOB <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Patient Address <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Attend Date <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Attend Time <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Attended Our Facility <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        <th>Description <i class="zmdi zmdi-caret-up"></i> <i class="zmdi zmdi-caret-down"></i></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#1801</td>
-                                        <td>Adeline O'Reilly</td>
-                                        <td>$56,327</td>
-                                        <td>United states </td>
-                                        <td>San francisco</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1802</td>
-                                        <td>Dixie Armstrong</td>
-                                        <td>$42,872</td>
-                                        <td>Australia </td>
-                                        <td>Sydney</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1803</td>
-                                        <td>Zander Rohan</td>
-                                        <td>$36,721</td>
-                                        <td>Canada </td>
-                                        <td>Shawinigan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1804</td>
-                                        <td>Asha Dickens</td>
-                                        <td>$55,272</td>
-                                        <td>Denmark </td>
-                                        <td>Slagelse</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1805</td>
-                                        <td>Candice Padberg</td>
-                                        <td>$31,915</td>
-                                        <td>France </td>
-                                        <td>Paris</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1806</td>
-                                        <td>Maritza Beatty</td>
-                                        <td>$49,312</td>
-                                        <td>United states </td>
-                                        <td>New york</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1807</td>
-                                        <td>Sandra Klein</td>
-                                        <td>$27,147</td>
-                                        <td>United states </td>
-                                        <td>New york</td>
-                                    </tr>
+                                    
+                            <?php 
+                            
+                                    if(isset($_SESSION['usr_id'])!="") {
+	
+
+                                    
+                            $useerid = $_SESSION['usr_id'];
+                            
+                            $get_cat_pro = "select * from bookappointment where user_id='$useerid'";
+                
+                $run_cat_pro = mysqli_query($con,$get_cat_pro);
+                
+           //.. $count = mysqli_num_rows($con,$run_cat_pro);
+            
+            ////if($count == 0){
+           //     echo "<h2>No post found in this categories.</h2>";
+//}
+                while($row=mysqli_fetch_array($run_cat_pro)){
+                            
+                    
+                     $main_id = $row['id'];
+                    $doc_id = $row['doc_id'];
+                    $user_id = $row['user_id'];
+                    $doc_name = $row['doc_name'];
+                    $patient_name = $row['patient_name'];
+                    $patient_email = $row['patient_email'];
+                    $patient_phone = $row['patient_phone'];
+                    $patient_dob = $row['patient_dob'];
+                    $patient_address = $row['patient_address'];
+                    $patient_date = $row['patient_date'];
+                    $patient_time = $row['patient_time'];
+                    $patient_yy = $row['yy'];
+                    $patient_desc = $row['patient_desc'];
+                     
+                    
+                    ?>
+                            
+                         <tr>
+                                        <td><?php echo $main_id; ?></td>
+                                        <td><?php echo $doc_id ;?></td>
+                                        <td><?php echo $user_id ;?></td>
+                                        <td><?php echo $doc_name ;?></td>
+                                        <td><?php echo $patient_name ;?></td>
+                                        <td><?php echo $patient_email ;?></td>
+                                        <td><?php echo $patient_phone ;?></td>
+                                        <td><?php echo $patient_dob ;?></td>
+                                        <td><?php echo $patient_address ;?></td>
+                                        <td><?php echo $patient_date ;?></td>
+                                        <td><?php echo $patient_time ;?></td>
+                                        <td><?php echo $patient_yy ;?></td>
+                                        <td><?php echo $patient_desc ;?></td>
+                                        
+                                    </tr>   
+                            
+                            
+                            
+                            
+                            
+            <?php    }}
+                            ?>
+                            
+                            
+                            
+                            
+                                    
                                 </tbody>
                             </table>
                         </div>
