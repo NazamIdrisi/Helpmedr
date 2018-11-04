@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -58,7 +59,17 @@
 						<li><a href="about.php">About</a></li>
 						<li><a href="services.php">Services </a></li>
 						<li><a href="contact.php">Contact</a></li>
-						<li><a href="login.php">Login</a></li>
+						
+                        <?php if (isset($_SESSION['usr_id'])) { ?>
+                        
+                        <li class="dropdown"><b><p style="color:white;">Signed in as <?php echo $_SESSION['usr_name']; ?></p></b></li>
+				<li><a href="user/index.php">My account</a></li>
+                        <li><a href="logout.php">Log Out</a></li>
+                        
+				<?php } else { ?>
+				<li><a href="choose_login.php">Login</a></li>
+				
+				<?php } ?>
 					</ul>				
 				</div>
 			</div>

@@ -9,6 +9,7 @@
 	<title>HELPMEDR - Doctors</title>
 <link href="images/logo.png" rel="shortcut icon"/>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/card.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/dr-framework.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/navigation.css" type="text/css" media="screen">
 	<link rel="stylesheet" type="text/css" href="css/fullwidth.css" media="screen" />
@@ -17,7 +18,8 @@
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" href="css/animate.css" />
 
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -88,7 +90,7 @@
         <div class="note">Doctors</div>
         
         <div class="site-map">
-    	You are here:<a href="index.html">Home</a> &gt; Doctors
+    	You are here:<a href="index.php" style="text-size:-5px;"><span></span></a> &gt; Doctors
 		</div>
 		
 	<div class="clear"></div>
@@ -102,14 +104,14 @@
                         <td>
   
   <div class="input-group">
-   <div class="input-group-addon">
-	<span class="glyphicon glyphicon-briefcase"></span> 
+   <div class="input-group-addon" >
+	<span class="glyphicon glyphicon-search" > Search</span> 
    </div>
-   <input class="form-control" id="myInput" name="mm" type="text"/>
+   <input class="form-control animated slideInLeft" style="animation-duration: 2s;animation-delay: 0.2s;" id="myInput" name="mm" type="text"/>
   </div>
                              <div id="result"></div>
  </td>
-                        <td ><input type="submit" name="seaa" class="btn btn-primary" value="Search" /></td>
+                        <!--<td style="text-align:center;" class="animated slideInLeft"><input type="submit" name="seaa" class="btn btn-primary" style="height:35px;"  value="Search" /></td>-->
                     </tr></div>
                 </table>
                 </form>
@@ -120,9 +122,9 @@
 	
 
 	<!-- Container -->
-	<div class="wrapper">
+	<div style="margin-left:40px;">
 
-	<div id="container">
+	<div>
 	
     <!--<ul id="filterOptions">
  <center>
@@ -192,7 +194,7 @@ $(document).ready(function(){
   });
 });
 </script>
-     <table  id="myTable">
+     <table  id="myTable" class="col-md-8" >
     
    
         <?php
@@ -218,31 +220,61 @@ $(document).ready(function(){
       ?>
        
   <tr class="col-sm-4">
-        <td >
-      <div class="wrapper">
-	<div id="container">
-  <div id="ourHolder">
-      
-    <div class="item treat col-sm-4">
-	<div class="view view-two"> 
-		<img src="admin/images/<?php echo $dimg; ?>" alt="" style="width:240px;height:200px;" /> 
-		<div class="mask"> 
-			<a href="dr_profile.php?did=<?php echo $row["dr_id"]?>" class='btn-icon'></a> 
-			<a class="btn-icon2" href="dr_profile.php?did=<?php echo $row["dr_id"]?>"></a> 
-		</div>
-	</div>
-      <div class="port-span">
-	      <h3><b>Dr Name:- <?php echo $dname; ?></b></h3>
-	      <span>Dr Specialities:- <?php echo $dsp; ?><br/>Dr Address:- <?php echo $dadd; ?></span>
-      </div>
-    </div>
-  </div>
-</div>
-	</div>
+        <td style="width:300px;">
+      <div class="card"  style="width:250px;">
+  <img src="admin/images/<?php echo $dimg; ?>" alt="John" class="animated zoomIn" style="width:240px;height:200px;border-radius:20px;animation-duration: 5s;animation-delay: 0.4s;">
+  <h1 class="animated zoomIn" style="animation-duration: 5s;animation-delay: 0.4s;"><?php echo $dname; ?></h1>
+  <p class="title animated zoomIn" style="animation-duration: 5s;animation-delay: 0.4s;">Specialities: <?php echo $dsp; ?></p>
+  <p class="animated zoomIn" style="animation-duration: 5s;animation-delay: 0.4s;">Location: <?php echo $dadd; ?></p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+ </div><div class="cont">
+ <p class="animated zoomIn"><a href="dr_profile.php?did=<?php echo $row["dr_id"]?>" class='btn btn-4' >Read More
+     </a></p></div>
+</div><br/><br/>
       </td>
       </tr>
    <!-- <li class="active"><a href="#" class="all">All</a></li>..-->
-      
+      <style>
+         
+  
+          
+         .btn {
+             padding-top:15px;
+             height: 50px;
+             width:100%;
+  flex: 1 1 auto;
+  
+  
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+ 
+ }
+
+/* Demo Stuff End -> */
+
+/* <- Magic Stuff Start */
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+
+.btn-4 {
+  background-image: linear-gradient(to right, #a1c4fd 0%, #2E86C1 60%, #a1c4fd 100%);
+}
+
+
+/* Magic Stuff End -> */
+         </style>
     
     <!--<li><a href="#" class="heart">Heart</a></li>
     <li><a href="#" class="diabet">Diabet</a></li>
@@ -272,7 +304,10 @@ $(document).ready(function(){
       ?>
       
       
-   
+   <div class="col-md-4" style="border:1px solid blue;height:200px;">
+  
+      
+</div>
       
    
       
@@ -499,7 +534,7 @@ $(document).ready(function(){
 	<script type="text/javascript" src="js/jquery.superfish.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 
-
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 </body>
 </html>

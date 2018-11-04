@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,6 +20,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/profile.css" />
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -53,7 +57,14 @@
 						<li><a href="about.php">About</a></li>
 						<li><a href="#">Services </a></li>
 						<li><a href="contact.php">Contact</a></li>
-						<li><a href="choose_login.php">Login</a></li>
+						<?php if (isset($_SESSION['usr_id'])) { ?>
+				<li><b><p style="color:white;">Signed in as <?php echo $_SESSION['usr_name']; ?></p></b></li>
+			<li><a href="user/index.php">My account</a></li>
+                        <li><a href="logout.php">Log Out</a></li>
+				<?php } else { ?>
+				<li><a href="choose_login.php">Login</a></li>
+				
+				<?php } ?>
 					</ul>				
 				</div>
 			</div>
@@ -116,48 +127,122 @@
                     $Image= $row['Image'];
                     $type = $row['type'];
                     
-                    
+                     $_SESSION['pathologyid']=$Pathology_Id;
+                    $_SESSION['pathologyname']=$Pathology_Name;
                     
     
     ?>
     
-	<div class="wrapper">
-		<table style="width:100%;border:1px dotted black;background-color:#e8e9eb;">
-		<tr><td style="width:300px;border-bottom:1px dotted black;"><div class="view view-two"> 
-		<img src="admin/images/<?php echo $Image; ?>" alt="" style="width:350px;height:320px;" /> 
-		
-	</div>
-      <div class="port-span">
-	      <h3>Name:- <?php echo $Pathology_Name ;?></h3>
-	      <span>Type:- <?php echo $type ;?></span>
-      </div></td>
-	  <td style="width:600px;border-left:1px dotted black;border-right:1px dotted black;border-bottom:1px dotted black;background-color:white;padding:10px;border-radius:5px;">
-	  <h1>Description</h1><pre><?php echo $Pathology_Description ;?></pre></td>
-	  <td style="width:20%;border-bottom:1px dotted black;">
-	  <h1 style="margin-top:-200px;"><Button style="width:100%;padding:5px;background-color:#ff3a00;border:none;font-size:18px;">Make Appointment</Button></h1>
-	  <!--<h1><Button style="width:100%;padding:5px;background-color:#fff;border:none;font-size:18px;">Send Message</Button></h1>-->
-	  <h1><Button style="width:100%;padding:5px;background-color:#32cd32;border:none;font-size:18px;">Enquiry Now</Button></h1>
-	  </td></tr>		
-	  <tr>
-	  <td style="width:300px;">
-	  <p style="background-color:white;padding:10px;border-radius:5px;">Address:-</p>
-	  <p style="background-color:white;padding:10px;border-radius:5px;">Email Id  :-</p>
-	  <p style="background-color:white;padding:10px;border-radius:5px;">Phone No :-</p>
-	  
-	  
-	  
-	  </td>
-	  <td style="width:600px;border-left:1px dotted black;border-right:1px dotted black;">
-	  <p style="background-color:white;padding:10px;border-radius:5px;"><?php echo $Pathology_Address;?></p>
-      <p style="background-color:white;padding:10px;border-radius:5px;"><?php echo $Pathology_Email ;?></p>
-      <p style="background-color:white;padding:10px;border-radius:5px;">+91 <?php echo $Pathology_Mobile ?></p>
-      
-	  </td>
-	  </tr>
-	  </table>
-
-	
-</div>
+	<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            
+                            <img src="admin/images/<?php echo $Image; ?>" alt="" style="width:245px;height:200px;"/>
+                            <div class="file btn btn-lg btn-primary">
+                                <?php echo $Pathology_Name ;?>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="profile-head">
+                                    <h5>
+                                        <?php echo $Pathology_Name ;?>
+                                    </h5>
+                                   
+                                    <p class="proile-rating">SPECIALITIES : <span><?php echo $type;?></span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Description</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                       <a href="bookpath.php?pp_id=<?php echo $row["Pathology_Id"]?>" class="profile-edit-btn btn-success" name="btnAddMore" style="text-decoration:none">Contact Pathology</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <!--<p>WORK EXPERIENCE</p>
+                            <a href="#"><?php //echo $d_ex ;?> Years</a><br/>--->
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Pathology Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>path13<?php echo $Pathology_Id  ;?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><?php echo $Pathology_Name ;?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><?php echo $Pathology_Email ;?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>+91 <?php echo $Pathology_Mobile ;?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><?php echo $Pathology_Address ;?></p>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                       
+                                        
+                                        
+                                       
+                                        
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Description</label><br/>
+                                        <p><?php echo $Pathology_Description ;?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+    
     <?php
                     
                 }

@@ -232,8 +232,8 @@ session_start();
                         <table>
                             
                             
-                    <tr><td><input name="dr_email"  type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="dr_pass"  type="text" data-value="Password"></td></tr>
+                    <tr><td><input name="dr_email"  type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="dr_pass"  type="text" data-value="Password" style="-webkit-text-security: square;" required></td></tr>
                         
                         <tr><td><input type="submit"  name="dr_submit" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>
@@ -258,8 +258,8 @@ session_start();
                             <tr>
                         
                         </tr>
-                    <tr><td><input name="p_email" id="name" type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="p_pass" id="mail" type="text" data-value="Password"></td></tr>
+                    <tr><td><input name="p_email" id="name" type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="p_pass" id="mail" type="text" data-value="Password" style="-webkit-text-security: square;" required></td></tr>
                         
                         <tr><td><input type="submit" name="p_submit" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>
@@ -285,8 +285,8 @@ session_start();
                             <tr>
                         
                         </tr>
-                    <tr><td><input name="e_email" id="name" type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="e_pass" id="mail" type="text" data-value="Password"></td></tr>
+                    <tr><td><input name="e_email" id="name" type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="e_pass" id="mail" type="text" data-value="Password" required style="-webkit-text-security: square;"></td></tr>
                         
                         <tr><td><input type="submit"  name="e_submit" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>
@@ -305,8 +305,8 @@ session_start();
                             <tr>
                         
                         </tr>
-                    <tr><td><input name="h_email" id="name" type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="h_pass" id="mail" type="text" data-value="Password"></td></tr>
+                    <tr><td><input name="h_email" id="name" type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="h_pass" id="mail" type="text" data-value="Password" required style="-webkit-text-security: square;"></td></tr>
                         
                         <tr><td><input type="submit" name="h_submit" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>
@@ -326,8 +326,8 @@ session_start();
                             <tr>
                         
                         </tr>
-                    <tr><td><input name="m_email" id="name" type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="m_pass" id="mail" type="text" data-value="Password"></td></tr>
+                    <tr><td><input name="m_email" id="name" type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="m_pass" id="mail" type="text" data-value="Password" required style="-webkit-text-security: square;"></td></tr>
                         
                         <tr><td><input type="submit" name="m_submit" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>

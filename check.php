@@ -1,13 +1,13 @@
 <?php
-include('db.php');
-session_start();
-$user_check=$_SESSION['UserName'];
+include_once 'db.php';
 
-$ses_sql = mysqli_query($db,"SELECT UserName FROM candidate WHERE UserName='$user_check' ");
+$user_check=$_SESSION['usr_name'];
+
+$ses_sql = mysqli_query($con,"SELECT usr_name FROM patient WHERE usr_name='$user_check' ");
 
 $row=mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
 
-$login_user=$row['UserName'];
+$login_user=$row['usr_name'];
 
 if(!isset($user_check))
 {

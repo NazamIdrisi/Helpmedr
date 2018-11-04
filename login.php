@@ -1,14 +1,6 @@
 <?php
-	include('login_process.php'); // Include Login Script
-
-	if ((isset($_SESSION['UserName']) != '')) 
-	{
-		header('Location:login.php');
-	}	
-	
-
+session_start();
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HELPMEDR | Login</title>
-
+<link href="images/logo.png" rel="shortcut icon"/>
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
@@ -32,10 +24,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 	
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<!--[if lt IE 9]>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
@@ -94,21 +86,51 @@
 	<div class="inner-banner">
 		<div class="note">Login</div>
 		<div class="site-map">
-    	You are here:<a href="index.html">Home</a> &gt; Login
+    	You are here:<a href="index.php">Home</a> &gt; Login
 		</div>
 	<div class="clear"></div>
 	</div>
 	</div>
 	
-	
+	<?php
 
-	<!-- Container -->
-	<div class="container">
+
+if(isset($_SESSION['usr_id'])!="") {
+	header("Location: index.php");
+}
+
+include_once 'db.php';
+
+//check if form is submitted
+if (isset($_POST['login'])) {
+
+	$email = mysqli_real_escape_string($con, $_POST['email']);
+	$password = mysqli_real_escape_string($con, $_POST['password']);
+	$result = mysqli_query($con, "SELECT * FROM patient WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
+
+	if ($row = mysqli_fetch_array($result)) {
+		$_SESSION['usr_id'] = $row['id'];
+		$_SESSION['usr_name'] = $row['name'];
+		header("Location: index.php");
+	} else {
+		$errormsg = "Incorrect Email or Password!!!";
+	}
+}
+?>
+
+            
+    
+    
+    
+    
+    <div class="container">
   
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Login</a></li>
+    <li class="active"><a data-toggle="tab" href="#home">User Login</a></li>
     <li><a data-toggle="tab" href="#menu1">Sign Up</a></li>
-    
+    <!--<li><a data-toggle="tab" href="#menu2">Equipments</a></li>
+    <li><a data-toggle="tab" href="#menu3">Helth Insurance</a></li>
+      <li><a data-toggle="tab" href="#menu4">Medicine</a></li>-->
   </ul>
 
   <div class="tab-content">
@@ -116,47 +138,126 @@
       <div class="msg-form column3 col-sm-12" style="background-color:#eff0de;padding:10px 5px 50px 5px;border-radius:15px;margin-top:50px;margin-bottom:50px;">
 				<center><h4>Login</h4></center>
 				<div class="border"></div>
-				<form  id="contact-form" action="login.php" method="post">
+				<form  id="contact-form" action="login.php" method="post" name="loginform" enctype="multipart/form-data">
 					<center>
                         <table>
-                           
-                            <tr>
+                            
+                            
+                    <tr><td><input name="email"  type="text" data-value="User Id" required></td></tr>
+                        <tr><td><input name="password"  type="text" data-value="Password" required style="-webkit-text-security: square;"></td></tr>
                         
-                        </tr>
-                    <tr><td><input name="email" id="name" type="text" data-value="User Id"></td></tr>
-                        <tr><td><input name="password" id="mail" type="text" data-value="Password"></td></tr>
-                        
-                        <tr><td><input type="submit" name="submit" id="submit_contact" value="Login!" style="padding-right:40px;padding-left:40px;"></td></tr>
+                        <tr><td><input type="submit"  name="login" value="Login" style="padding-right:40px;padding-left:40px;"></td></tr>
                         </table>
                     </center>
 				</form>
 			</div>
       </div> 
-    <div id="menu1" class="tab-pane fade">
+      <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+      <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
+			<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+      
+      <div id="menu1" class="tab-pane">
       <div class="msg-form column3 col-sm-12" style="background-color:#eff0de;padding:10px 5px 50px 5px;border-radius:15px;margin-top:50px;margin-bottom:50px;">
 				<center><h4>Sign Up</h4></center>
 				<div class="border"></div>
-				<form  id="contact-form" action="#">
+				<form  id="contact-form" action="register.php" name="signupform" method="post" enctype="multipart/form-data">
 					<center>
                         <table>
                             
+                            
+                    <tr><td><input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>"  />
+						<span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span></td></tr>
+                            
+                        <tr>
+                            <td>
+                            <input type="text" name="email" placeholder="Email" required value="<?php if($error) echo $email; ?>"  />
+						<span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+                            </td>
+                            </tr>    
+                            
                             <tr>
+                            <td>
+                                <input type="text" name="password" placeholder="Password" required style="-webkit-text-security: square;"  />
+						<span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+                                </td>
+                            </tr>
                         
-                        </tr>
-                    <tr><td><label>Email:</label></td><td><input name="User Id" id="name" type="text" data-value="Email"></td></tr>
-                        <tr><td><label>Password:</label></td><td><input name="Password" id="mail" type="text" data-value="Password"></td></tr>
+                            <tr>
+                            <td>
+                                <input type="text" name="cpassword" placeholder="Confirm Password" required style="-webkit-text-security: square;" />
+						<span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+                                </td>
+                            </tr>
+                            
                         
-                        <tr><td></td><td><input type="submit" id="submit_contact" value="Submit" style="padding-right:40px;padding-left:40px;"></td></tr>
+                        <tr>
+                            <td>
+                                <input type="submit"  name="signup" value="Sign Up" style="padding-right:40px;padding-left:40px;"></td>
+                            
+                            </tr>
                         </table>
                     </center>
 				</form>
 			</div>
-    </div>
+      </div> 
+      
+      <?php
+      
+      
     
+    ?>
+          <?php
+      
+      
     
+    ?>
+      
+   
+   
+      
      
   </div>
 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	<!-- Container --
+	<div class="wrapper">
+		<div class="contact-row dark">
+		<br><br>
+			<div class="contact2 column4">
+				
+			</div>
+
+
+			<div class="msg-form column3" style="background-color:#eff0de;padding:10px 5px 50px 5px;border-radius:15px;margin-right:10px;">
+				<center><h4>Login</h4>
+				<div class="border"></div>
+				<form  id="contact-form" action="#">
+					<input name="User Id" id="name" type="text" data-value="User Id"><br>
+					<input name="Password" id="mail" type="text" data-value="Password"><br>
+					
+					<input type="submit" id="submit_contact" value="Reset">
+					<input type="submit" id="submit_contact" value="Submit">
+	  				<div id="msg" class="message"></div>
+				</form></center>
+			</div>
+			<div class="contact2 column5">
+				
+			</div>
+			<div class="clear"></div>
+			<br>
+			<br>
+		</div>
+	</div>
 	<!-- End Wrapper -->
 
 	<!-- Footer -->

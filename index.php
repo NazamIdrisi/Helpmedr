@@ -1,3 +1,9 @@
+<?php
+session_start();
+include_once 'db.php';
+
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +25,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Philosopher:400,700,400italic' rel='stylesheet' type='text/css'>
-
+ 
 	
 
 	<!--[if lt IE 9]>
